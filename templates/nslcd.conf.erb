@@ -25,8 +25,8 @@ scope <%= scope.lookupvar('nslcd::scope') %>
 <%=   "filter #{map} #{filter}" %> 
 <% end -%>
 
-<% scope.lookupvar('nslcd::map').each do |map| -%>
-<%   map.each do |attr,newattr| -%>
+<% scope.lookupvar('nslcd::map').each do |map,attrs| -%>
+<%   attrs.each do |attr,newattr| -%>
 <%=    "#{map} #{attr} #{newattr}" %> 
 <%   end -%>
 <% end -%>
