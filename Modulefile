@@ -1,4 +1,4 @@
-name    'fnerdwq-nscld'
+name    'fnerdwq-nslcd'
 version '0.1.0'
 source 'https://github.com/fnerdwq/puppet-nslcd.git'
 author 'Frederik Wagner'
