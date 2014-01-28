@@ -39,8 +39,12 @@ class nslcd (
 
   # TODO: Parmeter check
 
-  class {'nslcd::install': }
-  -> class {'nslcd::config': }
-  ~> class {'nslcd::service': }
+  contain 'nslcd::install'
+  contain 'nslcd::config'
+  contain 'nslcd::service'
+
+  Class['nslcd::install']
+  -> Class['nslcd::config']
+  ~> Class['nslcd::service']
 
 }
