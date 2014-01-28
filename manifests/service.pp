@@ -2,8 +2,8 @@
 class nslcd::service {
 
   case $nslcd::ensure {
-    'running', true:  { $nslcd_ensure = true  }
-    'stopped', false: { $nslcd_ensure = false }
+    /running|true/, true:   { $nslcd_ensure = true  }
+    /stopped|false/, false: { $nslcd_ensure = false }
     default: { fail('no valid value for $nslcd::ensure') }
   }
 
