@@ -1,0 +1,33 @@
+# Managed by puppet.
+
+# The user and group nslcd should run as.
+uid <%= scope.lookupvar('nslcd::uid') %>
+gid <%= scope.lookupvar('nslcd::gid') %>
+
+# The location at which the LDAP server(s) should be reachable.
+uri <%= scope.lookupvar('nslcd::uri') %>
+
+# The search base that will be used for all queries.
+base <%= scope.lookupvar('nslcd::base') %>
+
+# The LDAP protocol version to use.
+ldap_version <%= scope.lookupvar('nslcd::ldap_version') %>
+
+# The DN to bind with for normal lookups.
+binddn <%= scope.lookupvar('nslcd::binddn') %>
+bindpw <%= scope.lookupvar('nslcd::bindpw') %>
+
+# The search scope.
+scope <%= scope.lookupvar('nslcd::scope') %>
+
+
+<% scope.lookupvar('nslcd::filter').each do |map,filter| -%>
+<%=   "filter #{map} #{filter}" %> 
+<% end -%>
+
+<% scope.lookupvar('nslcd::map').each do |map| -%>
+<%   map.each do |attr,newattr| -%>
+<%=    "#{map} #{attr} #{newattr}" %> 
+<%   end -%>
+<% end -%>
+
