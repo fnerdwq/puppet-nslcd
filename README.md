@@ -39,17 +39,17 @@ Simply include it.
 ##Usage
 
 Just include the module by 
-
 ```puppet
 include nslcd
 ```
+and configure it through hiera (*uri* and *base* are required!).
 
-Configure it through hiera or declare it resource-like with the parameters set, e.g.:
-
+Or declare it resource-like with the parameters set, e.g.:
 ```puppet
-class { 'nslcd':
-  ...
-}
+class {'nslcd':
+  uri  => 'ldap://ldap.example.de',
+  base => 'dc=example,dc=com',
+ }
 ```
 
 ##Limitations:
