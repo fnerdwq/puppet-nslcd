@@ -9,69 +9,71 @@
 #
 # [*ensure*]
 #   Should we install nscld at all, takes all valid ensure values for the
-#   package provide, default: installed
+#   package provide
+#   *Optional* (defaults to installed)
 #
 # [*service*]
-#   Should the nscd service be running, default: running
+#   Should the nscd service be running
+#   *Optional* (defaults to running)
 #
 # [*uid*]
 #   This specifies the user id with which the daemon should be  run.
-#   Default: nslcd
+#   *Optional* (defaults to nslcd)
 #
 # [*gid*]
 #   This specifies the group id with which the daemon should be run.
-#   Default: nslcd
+#   *Optional* (defaults to nslcd)
 #
 # [*uri*]
 #   Specifies the LDAP URI of the server to  connect  to.   The  URI
 #   scheme  may  be  ldap, ldapi or ldaps, specifying LDAP over TCP,
 #   ICP or SSL respectively (if supported by the LDAP library).
-#   Default: undef - must be set!
+#   **Required** (dfeaults to false)
 #
 # [*base*]
 #   Specifies  the  base  distinguished  name  (DN) to use as search
 #   base.
-#   Default: undef - must be set!
+#   **Required** (defaults to false)
 #
 # [*ldap_version*]
 #   Specifies  the version of the LDAP protocol to use.  The default
 #   is to use the maximum version supported by the LDAP library.
-#   Default: 3
+#   *Optional* (defaults to 3)
 #
 # [*binddn*]
 #   Specifies the distinguished name  with  which  to  bind  to  the
 #   directory  server  for  lookups.   The default is to bind anony‐
 #   mously.
-#   Default: undef
+#   *Optional* (defaults to false)
 #
 # [*bindpw*]
 #   Specifies the credentials with which to bind.   This  option  is
 #   only  applicable  when  used with binddn above.
-#   Default: undef
+#   *Optional* (defaults to false)
 #
 # [*scope*]
 #   Specifies the search scope (subtree, one level or base  object).
 #   The  default scope is subtree; base scope is almost never useful
 #   for name service lookups.
-#   Default: unset
+#   *Optional* (defaults to false)
 #
 # [*filter*]
 #   The FILTER is an LDAP search filter to use for a  specific  map.
+#   *Optional* (defaults to {})
 #
-#   Default: {}
 #   Format:  { map => filter, ... }
 #
 # [*map*]
 #   This option allows for custom attributes to be looked up instead
 #   of  the  default RFC 2307 attributes.
+#   *Optional* (defaults to {})
 #
-#   Default: {}
 #   Format:  { map => { attribute => newattribute, ...}, ...}
 #
 # [*config_template*]
 #   A different nscd.conf template can be specified. Be sure to include
 #   all parameters.
-#   Default set to the internal template.
+#   *Optional* (defaults to nslcd/nslcd.conf.erb)
 #
 # === Examples
 #
@@ -90,12 +92,12 @@ class nslcd (
   $service         = 'running',
   $uid             = 'nslcd',
   $gid             = 'nslcd',
-  $uri             = undef,
-  $base            = undef,
+  $uri             = false,
+  $base            = false,
   $ldap_version    = 3,
-  $binddn          = undef,
-  $bindpw          = undef,
-  $scope           = undef,
+  $binddn          = false,
+  $bindpw          = false,
+  $scope           = false,
   $filter          = {},
   $map             = {},
   $config_template = 'nslcd/nslcd.conf.erb'

@@ -13,13 +13,18 @@ base <%= scope.lookupvar('nslcd::base') %>
 # The LDAP protocol version to use.
 ldap_version <%= scope.lookupvar('nslcd::ldap_version') %>
 
+<% if scope.lookupvar('nslcd::binddn') -%>
 # The DN to bind with for normal lookups.
 binddn <%= scope.lookupvar('nslcd::binddn') %>
+<%   if scope.lookupvar('nslcd::bindpw') -%>
 bindpw <%= scope.lookupvar('nslcd::bindpw') %>
+<%   end -%>
+<% end -%>
 
+<% if scope.lookupvar('nslcd::scope') -%>
 # The search scope.
 scope <%= scope.lookupvar('nslcd::scope') %>
-
+<% end -%>
 
 <% scope.lookupvar('nslcd::filter').each do |map,filter| -%>
 <%=   "filter #{map} #{filter}" %> 
