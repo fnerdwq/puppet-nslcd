@@ -2,7 +2,7 @@
 class nslcd::install {
 
   package { 'nslcd':
-    ensure => present,
+    ensure => $nslcd::ensure,
     name   => $nslcd::params::package,
   }
 

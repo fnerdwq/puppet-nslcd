@@ -1,15 +1,15 @@
 # Manages the nslcd service (private)
 class nslcd::service {
 
-  case $nslcd::ensure {
-    /running|true/, true:   { $nslcd_ensure = true  }
-    /stopped|false/, false: { $nslcd_ensure = false }
+  case $nslcd::service {
+    /running|true/, true:   { $nslcd_service = true  }
+    /stopped|false/, false: { $nslcd_service = false }
     default: { fail('no valid value for $nslcd::ensure') }
   }
 
   service {'nslcd':
-    ensure     => $nslcd_ensure,
-    enable     => $nslcd_ensure,
+    ensure     => $nslcd_service,
+    enable     => $nslcd_service,
     hasrestart => true,
     hasstatus  => true,
   }

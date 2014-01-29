@@ -6,7 +6,7 @@ class nslcd::config {
     owner   => root,
     group   => $nslcd::gid,
     mode    => '0640',
-    content => template('nslcd/nslcd.conf.erb'),
+    content => template($nslcd::config_template),
   }
 
 }
